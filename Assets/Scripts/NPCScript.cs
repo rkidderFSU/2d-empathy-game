@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class NPCScript : MonoBehaviour
 {
-    public GameObject textContainer;
     public TextMeshProUGUI interactText;
     public TextMeshProUGUI questBestowText;
     public TextMeshProUGUI questIncompleteText;

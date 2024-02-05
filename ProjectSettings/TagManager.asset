@@ -6,6 +6,7 @@ TagManager:
   tags:
   - StandableGround
   - Wall
+  - Door
   layers:
   - Default
   - TransparentFX
