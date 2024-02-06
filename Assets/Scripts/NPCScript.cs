@@ -37,7 +37,14 @@ public class NPCScript : MonoBehaviour
             }
             else if (questComplete)
             {
-                questCompletedText.gameObject.SetActive(true);
+                if (gameObject.CompareTag("Door"))
+                {
+                    gameObject.SetActive(false);
+                }
+                else
+                {
+                    questCompletedText.gameObject.SetActive(true);
+                }
             }
         }
     }
@@ -59,14 +66,17 @@ public class NPCScript : MonoBehaviour
             interactText.gameObject.SetActive(false);
             questBestowText.gameObject.SetActive(false);
             questIncompleteText.gameObject.SetActive(false);
-            questCompletedText.gameObject.SetActive(false);
+            if (!gameObject.CompareTag("Door")) // Doors do not have Quest Completed Text
+            {
+                questCompletedText.gameObject.SetActive(false);
+            }
         }
     }
 
     private IEnumerator BestowQuest()
     {
         questBestowText.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         questBestowed = true;
     }
 }

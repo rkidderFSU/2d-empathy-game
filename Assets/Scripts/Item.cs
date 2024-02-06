@@ -7,11 +7,16 @@ public class Item : MonoBehaviour
 {
     private bool isColliding;
     public TextMeshProUGUI interactText;
+    public string npcName;
+    private NPCScript npc;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        if (gameObject.CompareTag("Objective Item"))
+        {
+            npc = GameObject.Find(npcName).GetComponent<NPCScript>();
+        }
     }
 
     // Update is called once per frame
@@ -23,6 +28,11 @@ public class Item : MonoBehaviour
             {
                 gameObject.SetActive(false);
             }
+            else if (gameObject.CompareTag("Objective Item") && npc.questBestowed)
+            {
+                gameObject.SetActive(false);
+                npc.questComplete = true;
+            }
         }
     }
 
@@ -30,8 +40,11 @@ public class Item : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            isColliding = true;
-            interactText.gameObject.SetActive(true);
+            if (gameObject.CompareTag("Door") || (gameObject.CompareTag("Objective Item") && npc.questBestowed))
+            {
+                isColliding = true;
+                interactText.gameObject.SetActive(true);
+            }
         }
     }
 
