@@ -12,11 +12,13 @@ public class NPCScript : MonoBehaviour
     private bool isColliding;
     public bool questBestowed;
     public bool questComplete;
+    private string npcName;
+    public GameObject questRewardItem;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        npcName = gameObject.name;
     }
 
     // Update is called once per frame
@@ -44,6 +46,10 @@ public class NPCScript : MonoBehaviour
                 else
                 {
                     questCompletedText.gameObject.SetActive(true);
+                    if (npcName == "Shady Man")
+                    {
+                        questRewardItem.SetActive(true);
+                    }
                 }
             }
         }

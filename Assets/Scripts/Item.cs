@@ -40,7 +40,7 @@ public class Item : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (gameObject.CompareTag("Door") || (gameObject.CompareTag("Objective Item") && npc.questBestowed))
+            if (gameObject.CompareTag("Door") || (gameObject.CompareTag("Objective Item") && npc.questBestowed) || gameObject.CompareTag("Non-Interactable"))
             {
                 isColliding = true;
                 interactText.gameObject.SetActive(true);

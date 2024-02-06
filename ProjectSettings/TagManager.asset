@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - Door
   - Objective Item
+  - Non-Interactable
   layers:
   - Default
   - TransparentFX
