@@ -14,11 +14,13 @@ public class NPCScript : MonoBehaviour
     public bool questComplete;
     private string npcName;
     public GameObject questRewardItem;
+    private GameManager m;
 
     // Start is called before the first frame update
     void Start()
     {
         npcName = gameObject.name;
+        m = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -60,7 +62,10 @@ public class NPCScript : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             isColliding = true;
-            interactText.gameObject.SetActive(true);
+           // if (m.sceneName == "House") // Only displays interact text in the first scene
+            {
+                interactText.gameObject.SetActive(true);
+            }
         }
     }
 

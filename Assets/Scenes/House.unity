@@ -943,6 +943,7 @@ MonoBehaviour:
   questCompletedText: {fileID: 0}
   questBestowed: 0
   questComplete: 0
+  questRewardItem: {fileID: 0}
 --- !u!1 &792976043
 GameObject:
   m_ObjectHideFlags: 0
@@ -2481,6 +2482,10 @@ PrefabInstance:
     - target: {fileID: 1223107470108824255, guid: 960f22a319669f94495382fb00069eb7, type: 3}
       propertyPath: m_Name
       value: Keys
+      objectReference: {fileID: 0}
+    - target: {fileID: 4146765682913987471, guid: 960f22a319669f94495382fb00069eb7, type: 3}
+      propertyPath: npcName
+      value: Locked Door
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
