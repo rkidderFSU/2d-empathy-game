@@ -9,14 +9,21 @@ public class Item : MonoBehaviour
     public TextMeshProUGUI interactText;
     public string npcName;
     private NPCScript npc;
-   // public GameObject playerGrabbyArm;
+    private SpriteRenderer playerSr;
+    public Sprite grabbySprite;
+    public Sprite mugTwo;
+    private SpriteRenderer sr;
+    public bool haveKettle;
 
     // Start is called before the first frame update
     void Start()
     {
+        haveKettle = false;
         if (gameObject.CompareTag("Objective Item"))
         {
             npc = GameObject.Find(npcName).GetComponent<NPCScript>();
+            playerSr = GameObject.Find("Player").GetComponent<SpriteRenderer>();
+            sr = GetComponent<SpriteRenderer>();
         }
     }
 
@@ -27,19 +34,36 @@ public class Item : MonoBehaviour
         {
             if (gameObject.CompareTag("Door"))
             {
-                gameObject.SetActive(false);
+                if (gameObject.name == "Tea Kettle")
+                {
+                    haveKettle = true;
+                    gameObject.SetActive(false);
+                }
+                else if (haveKettle && gameObject.name == "Mug")
+                {
+                    sr.sprite = mugTwo;
+                }
+                else
+                {
+                    gameObject.SetActive(false);
+                }
             }
             else if (gameObject.CompareTag("Objective Item") && npc.questBestowed)
             {
                 gameObject.SetActive(false);
                 npc.questComplete = true;
             }
-          /*  else if (gameObject.name == "Grabby Arm" && npc.questBestowed)
+            if (gameObject.name == "Grabby Arm" && npc.questBestowed)
             {
-                playerGrabbyArm.gameObject.SetActive(true);
+                playerSr.sprite = grabbySprite;
                 gameObject.SetActive(false);
                 npc.questComplete = true;
-            } */
+            } 
+            else if (gameObject.name == "Mug" && npc.questBestowed && haveKettle)
+            {
+                sr.sprite = mugTwo;
+                npc.questComplete = true;
+            }
         }
     }
 

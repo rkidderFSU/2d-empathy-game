@@ -10,6 +10,7 @@ TagManager:
   - Objective Item
   - Non-Interactable
   - Grabby Arm
+  - Mug
   layers:
   - Default
   - TransparentFX
