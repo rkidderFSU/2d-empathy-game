@@ -3604,7 +3604,6 @@ MonoBehaviour:
   questCompletedText: {fileID: 0}
   questBestowed: 0
   questComplete: 0
-  questRewardItem: {fileID: 0}
 --- !u!1 &1897574180
 GameObject:
   m_ObjectHideFlags: 0
@@ -4237,7 +4236,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8386103626766468000, guid: fd37ae77ccb0ee142a6192a15e5b39e0, type: 3}
       propertyPath: m_text
-      value: Hey, you found it! The elevator code is 9834.
+      value: Hey, you found it! Thanks, buddy! The elevator code is 9834.
       objectReference: {fileID: 0}
     - target: {fileID: 8386103626766468000, guid: fd37ae77ccb0ee142a6192a15e5b39e0, type: 3}
       propertyPath: m_fontColor.b

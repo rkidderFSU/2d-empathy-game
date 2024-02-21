@@ -13,14 +13,16 @@ public class NPCScript : MonoBehaviour
     public bool questBestowed;
     public bool questComplete;
     private string npcName;
-    public GameObject questRewardItem;
+    // public GameObject questRewardItem;
     private GameManager m;
+    private NPCScript rewardUnlock;
 
     // Start is called before the first frame update
     void Start()
     {
         npcName = gameObject.name;
         m = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        rewardUnlock = GameObject.Find("Elevator").GetComponent<NPCScript>();
     }
 
     // Update is called once per frame
@@ -50,7 +52,7 @@ public class NPCScript : MonoBehaviour
                     questCompletedText.gameObject.SetActive(true);
                     if (npcName == "Shady Man")
                     {
-                        questRewardItem.SetActive(true);
+                        rewardUnlock.questComplete = true;
                     }
                 }
             }
@@ -62,7 +64,7 @@ public class NPCScript : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             isColliding = true;
-           // if (m.sceneName == "House") // Only displays interact text in the first scene
+            // if (m.sceneName == "House") // Only displays interact text in the first scene
             {
                 interactText.gameObject.SetActive(true);
             }

@@ -9,6 +9,7 @@ public class Item : MonoBehaviour
     public TextMeshProUGUI interactText;
     public string npcName;
     private NPCScript npc;
+   // public GameObject playerGrabbyArm;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +34,12 @@ public class Item : MonoBehaviour
                 gameObject.SetActive(false);
                 npc.questComplete = true;
             }
+          /*  else if (gameObject.name == "Grabby Arm" && npc.questBestowed)
+            {
+                playerGrabbyArm.gameObject.SetActive(true);
+                gameObject.SetActive(false);
+                npc.questComplete = true;
+            } */
         }
     }
 

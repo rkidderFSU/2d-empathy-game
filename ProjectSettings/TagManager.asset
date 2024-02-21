@@ -9,6 +9,7 @@ TagManager:
   - Door
   - Objective Item
   - Non-Interactable
+  - Grabby Arm
   layers:
   - Default
   - TransparentFX
