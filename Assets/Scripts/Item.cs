@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    private bool isColliding;
+    public bool isColliding;
     public TextMeshProUGUI interactText;
     public string npcName;
     private NPCScript npc;
@@ -14,6 +14,7 @@ public class Item : MonoBehaviour
     public Sprite mugTwo;
     private SpriteRenderer sr;
     public bool haveKettle;
+    public Sprite burgerPlayer;
 
     // Start is called before the first frame update
     void Start()
@@ -64,6 +65,12 @@ public class Item : MonoBehaviour
                 sr.sprite = mugTwo;
                 npc.questComplete = true;
             }
+            else if (gameObject.CompareTag("Burger"))
+            {
+                npc.questTwoComplete = true;
+                playerSr.sprite = burgerPlayer;
+                gameObject.SetActive(false);
+            }
         }
     }
 
@@ -71,7 +78,7 @@ public class Item : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (gameObject.CompareTag("Door") || (gameObject.CompareTag("Objective Item") && npc.questBestowed) || gameObject.CompareTag("Non-Interactable"))
+            if (gameObject.CompareTag("Door") || (gameObject.CompareTag("Objective Item") && npc.questBestowed) || gameObject.CompareTag("Burger"))
             {
                 isColliding = true;
                 interactText.gameObject.SetActive(true);

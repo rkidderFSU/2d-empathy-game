@@ -16,6 +16,12 @@ public class NPCScript : MonoBehaviour
     // public GameObject questRewardItem;
     private GameManager m;
     private NPCScript rewardUnlock;
+    public TextMeshProUGUI questTwoBestowText;
+    public TextMeshProUGUI questTwoCompleteText;
+    public bool questTwoBestowed;
+    public bool questTwoComplete;
+    private SpriteRenderer playerSpr;
+    public Sprite defaultPlayer;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +29,7 @@ public class NPCScript : MonoBehaviour
         npcName = gameObject.name;
         m = GameObject.Find("Game Manager").GetComponent<GameManager>();
         rewardUnlock = GameObject.Find("Elevator").GetComponent<NPCScript>();
+        playerSpr = GameObject.Find("Player").GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -47,14 +54,16 @@ public class NPCScript : MonoBehaviour
                 {
                     gameObject.SetActive(false);
                 }
-                else
+                else if (!questTwoComplete)
                 {
-                    questCompletedText.gameObject.SetActive(true);
-                    if (npcName == "Shady Man")
-                    {
-                        rewardUnlock.questComplete = true;
-                    }
+                    StartCoroutine(BestowQuestTwo());
                 }
+            }
+            if (questTwoComplete)
+            {
+                playerSpr.sprite = defaultPlayer;
+                rewardUnlock.questComplete = true;
+                StartCoroutine(QuestTwoEnd());
             }
         }
     }
@@ -73,12 +82,15 @@ public class NPCScript : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        StopAllCoroutines();
         if (other.gameObject.CompareTag("Player"))
         {
             isColliding = false;
             interactText.gameObject.SetActive(false);
             questBestowText.gameObject.SetActive(false);
             questIncompleteText.gameObject.SetActive(false);
+            questTwoBestowText.gameObject.SetActive(false);
+            questTwoCompleteText.gameObject.SetActive(false);
             if (!gameObject.CompareTag("Door")) // Doors do not have Quest Completed Text
             {
                 questCompletedText.gameObject.SetActive(false);
@@ -91,5 +103,18 @@ public class NPCScript : MonoBehaviour
         questBestowText.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         questBestowed = true;
+    }
+    private IEnumerator BestowQuestTwo()
+    {
+        questTwoBestowText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        questTwoBestowed = true;
+    }
+    private IEnumerator QuestTwoEnd()
+    {
+        questTwoCompleteText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        questTwoCompleteText.gameObject.SetActive(false);
+        questCompletedText.gameObject.SetActive(true);
     }
 }

@@ -11,6 +11,7 @@ TagManager:
   - Non-Interactable
   - Grabby Arm
   - Mug
+  - Burger
   layers:
   - Default
   - TransparentFX
